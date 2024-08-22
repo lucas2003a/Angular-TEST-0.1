@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';               // => Importa el decorador NgModule desde '@angular/core', usado para definir un módulo en Angular
 import { RouterModule, Routes } from '@angular/router'; // => Importa RouterModule y Routes desde '@angular/router'
+import { AppComponent } from './app.component';
+import { ValidacionComponent } from './formularios/validacion/validacion.component';
 //RouterModule =>  Permite configurar el enrutamiento
 //Routes => Permite configurar las rutas
 
 //Array de objetos de rutas
-const routes: Routes = [];
+const routes: Routes = [
+  {path:"", component:AppComponent},
+  {path:"forms", component:ValidacionComponent}
+];
 
 //Decorador que define un módulo
 @NgModule({

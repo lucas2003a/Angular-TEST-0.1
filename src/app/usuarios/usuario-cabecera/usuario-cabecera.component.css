@@ -1,0 +1,11 @@
+h1.active{
+  color: red;
+}
+
+#details{
+  display: block;
+}
+
+#details.hidden{
+  display: none;
+}

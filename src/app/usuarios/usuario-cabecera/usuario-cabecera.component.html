@@ -1,1 +1,174 @@
-<h1>{{title}}</h1>
+<div class="row">
+  <div class="col-md-6">
+    <h1 [class.active]="isActive">{{title}}</h1>
+    <div class="m-2">
+      <label for="none">
+        <input type="checkbox" name="none" id="none" value="Actividad" [(ngModel)]="isActive">
+        Actividad
+      </label>
+      <input type="text" class="form-control" [(ngModel)]="title">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div>
+      <button (click)="Saludar()" class="btn btn-primary">Saludar</button>
+    </div>
+
+  </div>
+</div>
+<section class="p-4 bg-secondary" style="border-radius: 0.5rem 0.5rem;">
+
+  <label for="nombre">Nombre:</label>
+  <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" [(ngModel)]="nombre">
+  <span>Tu nombres es : <span class="fw-bold">{{ nombre ? nombre : "No hay nombre" }}</span></span>
+
+</section>
+
+<section class="mt-2 bg-primary p-2" style="border-radius: 0.5rem 0.5rem;">
+  <div>
+    <label for="details">
+      <input type="checkbox" name="details" id="details_check" [(ngModel)]="isHidden">
+      Detalles <span class="fw-bolder">({{ isHidden == true ? "ocultos" : "mostrados" }})</span>
+
+    </label>
+  </div>
+  <div class="p-2" [class.hidden]="isHidden" *ngIf="!isHidden" name="details" id="details"
+    style="background: #fff; border-radius: 0.5rem 0.5rem;">
+    <p class="fst-italic">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet nulla dolorum libero quasi eius porro quaerat
+      natus in expedita. Eos quisquam, architecto perspiciatis impedit aspernatur tenetur
+      quis veritatis voluptate quam.
+    </p>
+  </div>
+
+</section>
+
+<section class="mt-2 bg-success p-2" style="border-radius: 0.5rem;">
+  <div>
+    <label for="errorCode">Código de error:</label>
+    <input type="number" name="errorCode" id="errorCode" class="form-control" placeholder="Código de error"
+      (event)="ActualizarNumero($event)" [(ngModel)]="errorCode">
+    <span>Tu código de error es : <span class="fw-bold">{{ errorCode ? errorCode : "No hay código" }}</span></span>
+
+    <!-- SWITCH -->
+    <div class="bg-warning p-2" style="border-radius: 0.5rem;" *ngIf="errorCode">
+      <div [ngSwitch]="errorCode">
+
+        <!-- CASOS -->
+        <!-- 404 -->
+
+        <div class="h-100 p-5 text-white bg-primary border rounded-3" *ngSwitchCase="404">
+          <h2>404</h2>
+          <p>
+            Not found
+          </p>
+          <button class="btn btn-outline-primary" type="button">
+            Example button
+          </button>
+        </div>
+
+        <!-- 403 -->
+        <div class="h-100 p-5 text-white bg-primary border rounded-3" *ngSwitchCase="403">
+          <h2>403</h2>
+          <p>
+            Forbidden
+          </p>
+          <button class="btn btn-outline-primary" type="button">
+            Example button
+          </button>
+        </div>
+
+        <!-- 405 -->
+        <div class="h-100 p-5 text-white bg-primary border rounded-3" *ngSwitchCase="405">
+          <h2>405</h2>
+          <p>
+            Method not allow
+          </p>
+          <button class="btn btn-outline-primary" type="button">
+            Example button
+          </button>
+        </div>
+
+        <!-- Default -->
+        <div class="h-100 p-5 text-white bg-primary border rounded-3" *ngSwitchDefault>
+          <h2>Another error</h2>
+          <p>
+            Not known
+          </p>
+          <button class="btn btn-outline-primary" type="button">
+            Example button
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mt-2">
+  <div>
+    <img [src]="urlImg"  style="border-radius: 1rem;">
+  </div>
+  <p [innerHtml]="content"></p>
+</section>
+
+<section>
+  <div class="table-responsive">
+    <caption>Estudiantes</caption>
+    <table class="table table-primary">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ID</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Imagen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="" *ngFor="let student of students; let index = index">
+          <td scope="row">{{ index + 1}}</td>
+          <td>{{ student.id }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.age }}</td>
+          <td>
+            <img [src]="student.img" [alt]="student.name" width="50px">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<section>
+  <div class="table-responsive">
+    <caption>Productos</caption>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Moneda</th>
+          <th scope="col">Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="" *ngFor="let producto of productos; let index = index">
+          <td scope="row">{{ index + 1 }}</td>
+          <td>{{ producto.id }}</td>
+          <td>{{ producto.name }}</td>
+          <td>{{ producto.moneda }}</td>
+          <td>{{ producto.price | currency}}</td> <!-- currency => formatea  el precio con la moneda que se le indique -->  
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+
+<!-- {{  }} =>  Interpolation, tomas  el valor de una variable y lo muestra en el html -->
+<!-- [] =>  Acceso a un atributo de un objeto, tomas el valor de un atributo y lo muestra en el html -->
