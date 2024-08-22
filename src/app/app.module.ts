@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';  // => Define un mód
 
 import { AppRoutingModule } from './app-routing.module';    // => Define las rutas de la aplicación del archivo './app-routing.module'
 import { AppComponent } from './app.component';             // => Define el componente principal de la aplicación punto de entrada de la UI a la app
+import { UsuarioCabeceraComponent } from './usuarios/usuario-cabecera/usuario-cabecera.component'; // => Importa el módulo de usuarios
 
 //Decorador para definir el módulo
 @NgModule({
   declarations: [ // => Declara los componentes
-    AppComponent
+    AppComponent,
+    UsuarioCabeceraComponent
   ],
   imports: [ // => Importa los módulos que necesita este módulo
     BrowserModule,
