@@ -6,13 +6,13 @@
         <input type="checkbox" name="none" id="none" value="Actividad" [(ngModel)]="isActive">
         Actividad
       </label>
+      <!-- (ngModel) => ES UNA DIRECTIVA QUE MODIFICAL EL VALOR DE LA PROPIEDAD INIDICADA -->
+      <!-- A LA VEZ ACTUALIZA SU VALOR EN LA VISTA -->
       <input type="text" class="form-control" [(ngModel)]="title">
     </div>
   </div>
   <div class="col-md-6">
-    <div>
-      <button (click)="Saludar()" class="btn btn-primary">Saludar</button>
-    </div>
+
 
   </div>
 </div>
@@ -21,7 +21,10 @@
   <label for="nombre">Nombre:</label>
   <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" [(ngModel)]="nombre">
   <span>Tu nombres es : <span class="fw-bold">{{ nombre ? nombre : "No hay nombre" }}</span></span>
-
+  <div>
+    <button (click)="Saludar()" class="btn btn-primary">Saludar</button>
+    <!-- AL HACER CLICK EN EL EJECUTA EL MÉTODO SALUDAR -->
+  </div>
 </section>
 
 <section class="mt-2 bg-primary p-2" style="border-radius: 0.5rem 0.5rem;">
@@ -46,8 +49,7 @@
 <section class="mt-2 bg-success p-2" style="border-radius: 0.5rem;">
   <div>
     <label for="errorCode">Código de error:</label>
-    <input type="number" name="errorCode" id="errorCode" class="form-control" placeholder="Código de error"
-      (event)="ActualizarNumero($event)" [(ngModel)]="errorCode">
+    <input type="number" name="errorCode" id="errorCode" class="form-control" placeholder="Código de error" (event)="ActualizarNumero($event)" [(ngModel)]="errorCode">
     <span>Tu código de error es : <span class="fw-bold">{{ errorCode ? errorCode : "No hay código" }}</span></span>
 
     <!-- SWITCH -->
@@ -107,7 +109,7 @@
 
 <section class="mt-2">
   <div>
-    <img [src]="urlImg"  style="border-radius: 1rem;">
+    <img [src]="urlImg" style="border-radius: 1rem;">
   </div>
   <p [innerHtml]="content"></p>
 </section>
@@ -126,6 +128,7 @@
         </tr>
       </thead>
       <tbody>
+        <!-- RECORRIDO DEL ARRAY ESTUDIANTES -->
         <tr class="" *ngFor="let student of students; let index = index">
           <td scope="row">{{ index + 1}}</td>
           <td>{{ student.id }}</td>
@@ -135,6 +138,7 @@
             <img [src]="student.img" [alt]="student.name" width="50px">
           </td>
         </tr>
+        <!-- FIN RECORRIDO DEL ARRAY ESTUDIANTES -->
       </tbody>
     </table>
   </div>
@@ -155,14 +159,16 @@
         </tr>
       </thead>
       <tbody>
+        <!-- RECORRIDO DEL ARRAY DE PRODUCTOS -->
         <tr class="" *ngFor="let producto of productos; let index = index">
           <td scope="row">{{ index + 1 }}</td>
           <td>{{ producto.id }}</td>
           <td>{{ producto.name }}</td>
           <td>{{ producto.moneda }}</td>
-          <td>{{ producto.price | currency}}</td> <!-- currency => formatea  el precio con la moneda que se le indique -->  
-
+          <td>{{ producto.price | currency}}</td>
+          <!-- currency => formatea  el precio con la moneda que se le indique -->
         </tr>
+        <!-- FIN DEL RECORRDIO DEL ARRAY DE PRODUCTOS -->
       </tbody>
     </table>
   </div>
